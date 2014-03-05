@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 from django.conf.urls import patterns, url
-from demo.views import HomePageView, FormView, FormHorizontalView, FormInlineView, PaginationView
 from django.views.generic import TemplateView
 
+from demo.views import HomePageView, FormView, FormHorizontalView, FormInlineView, PaginationView
 from demo import views
 
 urlpatterns = patterns('',

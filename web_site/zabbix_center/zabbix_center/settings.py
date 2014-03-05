@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'bootstrap3',
     'demo',
     'demo_test',
+    'zabbix_tables'
 )
 
 MIDDLEWARE_CLASSES = (
