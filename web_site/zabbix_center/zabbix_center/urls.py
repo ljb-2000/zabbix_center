@@ -15,6 +15,8 @@ urlpatterns = patterns('',
     url(r'^demo/', include('demo.urls', namespace="demo")),
     url(r'^demo_test/', include('demo_test.urls', namespace="demo_test")),
     url(r'^zabbix_tables/', include('zabbix_tables.urls', namespace="zabbix_tables")),
+    url(r'^screens/', include('screens.urls', namespace="screens")),
+    url(r'^polls/', include('polls.urls', namespace='polls')),
 )
 
 if settings.DEBUG:

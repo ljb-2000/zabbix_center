@@ -40,7 +40,9 @@ INSTALLED_APPS = (
     'bootstrap3',
     'demo',
     'demo_test',
-    'zabbix_tables'
+    'zabbix_tables',
+    'screens',
+    'polls',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -63,10 +65,10 @@ WSGI_APPLICATION = 'zabbix_center.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django',
+        'NAME': 'zabbix_center',
         'USER': 'root',
         'PASSWORD': '123456',
-        'HOST': '192.168.1.204',
+        'HOST': 'localhost',
     }
 }
 
