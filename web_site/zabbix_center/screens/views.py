@@ -12,17 +12,26 @@ zapi = ZabbixAPI(ZABBIX_SERVER)
 zapi.login('Admin', 'zabbix')
 
 # return the name_list from hostgroup.get()
-hostgroup_dic = zapi.hostgroup.get(output='extend')
+hostgroup_dic = zapi.hostgroup.get(output='extend', selectHosts='')
 
 
 def index(request):
     #latest_groups_list = Groups.objects.all()
-    context = {'latest_groups_list': hostgroup_dic}
-    return render(request, 'screens/index.html', context)
+	context = {'latest_groups_list': hostgroup_dic}
+	return render(request, 'screens/index.html', context)
 
-def detail(request, group_name):
-    groups = result
-    return render(request, 'screens/detail.html', {'groups': groups})
+def detail(request, groupid):
+	for item in hostgroup_dic:
+		if groupid == item['groupid']:
+			group = item
+
+	hostids = [item_in['hostid'] for item_in in group['hosts']]
+	test = []
+	for host_id in hostids:         
+		test.append(zapi.host.get(filter={'hostid':host_id}, output='extend')[0]['name'])
+
+	context = {'groups': group , 'host_list': test}
+	return render(request, 'screens/detail.html', context)
 
 #def results(request, group_id):
 #    return HttpResponse("You're looking at the results of group %s." % group_id)

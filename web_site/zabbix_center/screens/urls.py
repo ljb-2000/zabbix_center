@@ -22,7 +22,7 @@ urlpatterns = patterns('',
 	# ex: /polls/
 	url(r'^$', views.index, name='index'),
 	# ex: /polls/5/
-	url(r'^(?P<group_name>\d+)/$', views.detail, name='detail'),
+	url(r'^(?P<groupid>\d+)/$', views.detail, name='detail'),
     # ex: /polls/5/results/
     #url(r'^(?P<group_id>\d+)/results/$', views.results, name='results'),
     # ex: /polls/5/vote/

@@ -1,6 +1,6 @@
-<h1>{{ groups.group_name }}</h1>
+<h1>{{ group.name }}</h1>
 <ul>
-{% for hosts in groups.hostsgroups_set.all %}
-    <li>{{ hosts.hosts }}</li>
-{% endfor %}
+	{% for host in host_list %}
+    <li>{{ host }}</li>
+    {% endfor %}
 </ul>
