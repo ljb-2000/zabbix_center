@@ -11,5 +11,11 @@ hostgroup_dic = zapi.hostgroup.get(output='extend')
 # name_list is the all group name
 name_list = [item['name'] for item in hostgroup_dic]
 
-zapi.hostgroup.get(selectHosts='',output='extend',monitored_hosts=1)
+result = zapi.hostgroup.get(selectHosts='',output='extend',monitored_hosts=1)
+
+# 
+result_dic = {}
+
+for item in result:
+    result_dic[item['name']] = [item_in['hostid'] for item_in in item['hosts']]
 

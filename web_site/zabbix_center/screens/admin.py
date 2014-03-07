@@ -12,6 +12,6 @@ class GroupsAdmin(admin.ModelAdmin):
 		(None, 		{'fields':['group_name']}),
 	]
 	inlines = [HostsInline]
-	list_display = ('group_name')
+	list_display = ('group_name',)
 
 admin.site.register(Groups, GroupsAdmin)

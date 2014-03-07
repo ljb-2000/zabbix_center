@@ -14,3 +14,10 @@ class HostsGroups(models.Model):
 
 	def __unicode__(self):
 		return self.hosts
+
+class HostsGroups(models.Model):
+	hosts = models.ForeignKey(HostsGroups)
+	graphid = models.IntegerField(default=0)
+
+	def __unicode__(self):
+		return self.hosts

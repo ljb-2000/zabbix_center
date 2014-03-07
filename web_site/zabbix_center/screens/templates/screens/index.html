@@ -1,9 +1,9 @@
-{% if latest_poll_list %}
+{% if latest_groups_list %}
     <ul>
-    {% for poll in latest_poll_list %}
-        <li><a href="{% url 'polls:detail' poll.id %}">{{ poll.question }}</a></li>
+    {% for groups in latest_groups_list %}
+        <li><a href="{% url 'screens:detail' groups.groupid %}">{{ groups.name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No polls are available.</p>
+    <p>No Groups are available.</p>
 {% endif %}
