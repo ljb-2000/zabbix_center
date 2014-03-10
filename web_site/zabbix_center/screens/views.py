@@ -26,11 +26,11 @@ def detail(request, groupid):
 			group = item
 
 	hostids = [item_in['hostid'] for item_in in group['hosts']]
-	test = []
+	hostid_list = []
 	for host_id in hostids:         
-		test.append(zapi.host.get(filter={'hostid':host_id}, output='extend')[0]['name'])
+		hostid_list.append(zapi.host.get(filter={'hostid':host_id}, output='extend')[0]['name'])
 
-	context = {'groups': group , 'host_list': test}
+	context = {'groups': group , 'host_list': hostid_list}
 	return render(request, 'screens/detail.html', context)
 
 #def results(request, group_id):
