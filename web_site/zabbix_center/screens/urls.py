@@ -23,6 +23,7 @@ urlpatterns = patterns('',
 	url(r'^$', views.index, name='index'),
 	# ex: /polls/5/
 	url(r'^(?P<groupid>\d+)/$', views.detail, name='detail'),
+    url(r'^tests', views.tests, name='tests'),
     # ex: /polls/5/results/
     #url(r'^(?P<group_id>\d+)/results/$', views.results, name='results'),
     # ex: /polls/5/vote/
