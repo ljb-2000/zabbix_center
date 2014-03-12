@@ -19,3 +19,13 @@ result_dic = {}
 for item in result:
     result_dic[item['name']] = [item_in['hostid'] for item_in in item['hosts']]
 
+In [49]: d = {x: zapi.host.get(filter={'hostid':x}, output='extend')[0]['name'] for x in hostids}
+
+In [50]: d
+Out[50]: 
+{u'10237': u'117.135.138.38',
+ u'10238': u'117.135.138.36',
+ u'10239': u'117.135.138.248',
+ u'10240': u'117.135.138.196',
+ u'10241': u'117.135.139.30',
+ u'10242': u'117.135.139.237'}

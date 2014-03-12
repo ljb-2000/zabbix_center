@@ -1,3 +1,7 @@
 <ul>
-	{{ result }}
+	{% for host in result %}
+	<li>{{ host }}</li>
+	{% endfor %}
+	{{ result.test1 }}
+	{{ result.test4.0.test_inside1 }}
 </ul>

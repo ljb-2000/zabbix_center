@@ -20,10 +20,11 @@ from screens import views
 
 urlpatterns = patterns('',
 	# ex: /polls/
-	url(r'^$', views.index, name='index'),
+	url(r'^$', views.group_index, name='group_index'),
 	# ex: /polls/5/
-	url(r'^(?P<groupid>\d+)/$', views.detail, name='detail'),
+	url(r'^(?P<groupid>\d+)/$', views.grouphost_detail, name='grouphost_detail'),
     url(r'^tests', views.tests, name='tests'),
+    url(r'^(?P<hostid>\d+)/$', views.hostview, name='hostview'),
     # ex: /polls/5/results/
     #url(r'^(?P<group_id>\d+)/results/$', views.results, name='results'),
     # ex: /polls/5/vote/

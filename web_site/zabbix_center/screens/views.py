@@ -15,12 +15,12 @@ zapi.login('Admin', 'zabbix')
 hostgroup_dic = zapi.hostgroup.get(output='extend', selectHosts='')
 
 
-def index(request):
+def group_index(request):
     #latest_groups_list = Groups.objects.all()
 	context = {'latest_groups_list': hostgroup_dic}
-	return render(request, 'screens/index.html', context)
+	return render(request, 'screens/group_index.html', context)
 
-def detail(request, groupid):
+def grouphost_detail(request, groupid):
 	for item in hostgroup_dic:
 		if groupid == item['groupid']:
 			group = item
@@ -31,11 +31,18 @@ def detail(request, groupid):
 		hostid_list.append(zapi.host.get(filter={'hostid':host_id}, output='extend')[0]['name'])
 
 	context = {'groups': group , 'host_list': hostid_list}
-	return render(request, 'screens/detail.html', context)
+	return render(request, 'screens/grouphost_detail.html', context)
+
+def hostview(request, hostid):
+
+	return render(request, 'screens/hosts.html', context)
 
 
 def tests(request):
-	context = {'result': model_tests('root','123456','zabbix')}
+	#context = {'result': model_tests('root','123456','zabbix')}
+	test_dic_test = [{'test_inside1': 'test_inside1'},{'test_inside2':'test_inside2'}]
+	test_dic = {'test1':'test1', 'test2':'test2', 'test3':'test3', 'test4':test_dic_test}
+	context = {'result': test_dic}
 	return render(request, 'screens/tests.html', context)
 
 #def results(request, group_id):
