@@ -1,6 +1,6 @@
 <h1>{{ group.name }}</h1>
 <ul>
-	{% for host in host_list %}
-    <li>{{ host }}</li>
+	{% for host, hostid in host_list, hostid_list %}
+    <li><a href="{% url 'screens:hostview' hostid %}">{{ host }}</a></li>
     {% endfor %}
 </ul>

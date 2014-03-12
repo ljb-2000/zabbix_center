@@ -6,7 +6,8 @@ from screens.models import Groups, HostsGroups, model_tests
 # import zabbixAPI
 from pyzabbix import ZabbixAPI
 # The hostname at which the Zabbix web interface is available
-ZABBIX_SERVER = 'http://192.168.1.204'
+#ZABBIX_SERVER = 'http://192.168.1.204'
+ZABBIX_SERVER = 'http://119.97.226.138:82'
 zapi = ZabbixAPI(ZABBIX_SERVER)
 # Login to the Zabbix API
 zapi.login('Admin', 'zabbix')
@@ -20,6 +21,7 @@ def group_index(request):
 	context = {'latest_groups_list': hostgroup_dic}
 	return render(request, 'screens/group_index.html', context)
 
+
 def grouphost_detail(request, groupid):
 	for item in hostgroup_dic:
 		if groupid == item['groupid']:
@@ -30,8 +32,9 @@ def grouphost_detail(request, groupid):
 	for host_id in hostids:         
 		hostid_list.append(zapi.host.get(filter={'hostid':host_id}, output='extend')[0]['name'])
 
-	context = {'groups': group , 'host_list': hostid_list}
+	context = {'groups': group , 'host_list': hostid_list, 'hostid_list':hostids}
 	return render(request, 'screens/grouphost_detail.html', context)
+
 
 def hostview(request, hostid):
 

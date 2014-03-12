@@ -1,7 +1,7 @@
 {% if latest_groups_list %}
     <ul>
     {% for groups in latest_groups_list %}
-        <li><a href="{% url 'screens:detail' groups.groupid %}">{{ groups.name }}</a></li>
+        <li><a href="{% url 'screens:grouphost_detail' groups.groupid %}">{{ groups.name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
