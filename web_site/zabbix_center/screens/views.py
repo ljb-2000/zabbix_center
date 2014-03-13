@@ -2,43 +2,26 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 # Create your views here.
 from screens.models import Groups, HostsGroups, model_tests
-
-# import zabbixAPI
-from pyzabbix import ZabbixAPI
-# The hostname at which the Zabbix web interface is available
-#ZABBIX_SERVER = 'http://192.168.1.204'
-ZABBIX_SERVER = 'http://119.97.226.138:82'
-zapi = ZabbixAPI(ZABBIX_SERVER)
-# Login to the Zabbix API
-zapi.login('Admin', 'zabbix')
-
-# return the name_list from hostgroup.get()
-hostgroup_dic = zapi.hostgroup.get(output='extend', selectHosts='')
+from screens.process import gid_process
 
 
 def group_index(request):
     #latest_groups_list = Groups.objects.all()
-	context = {'latest_groups_list': hostgroup_dic}
+	context = {'latest_groups_list': gid_process().gid_2_group_list()}
 	return render(request, 'screens/group_index.html', context)
 
 
-def grouphost_detail(request, groupid):
-	for item in hostgroup_dic:
-		if groupid == item['groupid']:
-			group = item
-
-	hostids = [item_in['hostid'] for item_in in group['hosts']]
-	hostid_list = []
-	for host_id in hostids:         
-		hostid_list.append(zapi.host.get(filter={'hostid':host_id}, output='extend')[0]['name'])
-
-	context = {'groups': group , 'host_list': hostid_list, 'hostid_list':hostids}
+def grouphost_detail(request, group_id):
+	group_name = gid_process().gid_2_group(group_id)
+	host_list = gid_process().gid_2_host(group_id)
+	context = {'groups': group_name , 'host_list': host_list}
 	return render(request, 'screens/grouphost_detail.html', context)
 
 
-def hostview(request, hostid):
-
-	return render(request, 'screens/hosts.html', context)
+def hostgraph_detail(request, host_id):
+	graphs = zapi.host.get(hostid=host_id, selectGraphs='')
+	context = {'graphs': graphs}
+	return render(request, 'screens/hostgraphs.html', context)
 
 
 def tests(request):

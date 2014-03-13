@@ -1,6 +1,6 @@
-<h1>{{ group.name }}</h1>
+<h1>{{ group_name }}</h1>
 <ul>
-	{% for host, hostid in host_list, hostid_list %}
-    <li><a href="{% url 'screens:hostview' hostid %}">{{ host }}</a></li>
-    {% endfor %}
+	{% for host in host_list %}
+	<li><a href="{% url 'screens:hostgraph_detail' host.hostid %}">{{ host.host }}</a></li>
+	{% endfor %}
 </ul>
