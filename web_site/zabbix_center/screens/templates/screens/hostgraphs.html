@@ -1,1 +1,6 @@
-{{ graphs }}
+<h2>{{ graphs.0.host }}</h2>
+<ul>
+	{% for graph in graphs.0.graphs %}
+		<li><img src="http://119.97.226.138:82/chart2.php?period=3600&graphid={{ graph.graphid }}"</li>
+	{% endfor %}	
+</ul>

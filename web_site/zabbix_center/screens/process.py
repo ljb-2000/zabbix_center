@@ -56,7 +56,7 @@ class hid_process(process_base):
 		self.host_id = host_id
 
 
-	def hid_2_graph_list(self, host_id):
+	def hid_2_graph_list(self):
 		'''
 		'''
-		return self.zapi.host.get(hosts=self.host_id, selectGraphs='')
+		return self.zapi.host.get(hostids=self.host_id, selectGraphs='', output='extend')
