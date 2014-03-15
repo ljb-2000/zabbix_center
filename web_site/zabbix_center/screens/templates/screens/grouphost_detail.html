@@ -1,6 +1,12 @@
+{% extends 'screens/base.html' %}
+{% block title %} {{ groups.name }} {% endblock %}
+{% block content %}
+
 <h1>{{ groups.name }}</h1>
 <ul>
 	{% for host in host_list %}
 	<li><a href="{% url 'screens:hostgraph_detail' host.hostid %}">{{ host.host }}</a></li>
 	{% endfor %}
 </ul>
+
+{% endblock %}

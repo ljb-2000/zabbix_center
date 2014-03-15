@@ -1,3 +1,7 @@
+{% extends 'screens/base.html' %}
+{% block title %}ZABBIX GRUOPS{% endblock %}
+{% block content %}
+
 {% if latest_groups_list %}
     <ul>
     {% for groups in latest_groups_list %}
@@ -7,3 +11,5 @@
 {% else %}
     <p>No Groups are available.</p>
 {% endif %}
+
+{% endblock %}
