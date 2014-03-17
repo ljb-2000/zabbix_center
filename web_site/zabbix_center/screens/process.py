@@ -6,8 +6,8 @@ from pyzabbix import ZabbixAPI
 # output host and hostid in {'host': host, 'hostid': hostid}
 class process_base(object):
 	def __init__(self):
-		ZABBIX_SERVER = 'http://192.168.1.203:82'
-		#ZABBIX_SERVER = 'http://119.79.232.99:82'
+		#ZABBIX_SERVER = 'http://192.168.1.203:82'
+		ZABBIX_SERVER = 'http://119.79.232.99:82'
 		self.zapi = ZabbixAPI(ZABBIX_SERVER)
 		# Login to the Zabbix API
 		self.zapi.login('Admin', 'zabbix')
@@ -59,4 +59,5 @@ class hid_process(process_base):
 	def hid_2_graph_list(self):
 		'''
 		'''
-		return self.zapi.graph.get(hostids=self.host_id, output='extend')
+		temp_result = self.zapi.graph.get(hostids=self.host_id, output='extend')
+		return [{'name': i['name'], 'graphid':i['graphid'], 'group': i['name'].split()[0]} for i in temp_result]

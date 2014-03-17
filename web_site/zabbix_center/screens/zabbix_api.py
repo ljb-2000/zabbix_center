@@ -1,8 +1,8 @@
 # import zabbixAPI
 from pyzabbix import ZabbixAPI
 # The hostname at which the Zabbix web interface is available
-#ZABBIX_SERVER = 'http://119.97.226.138:82'
-ZABBIX_SERVER = 'http://192.168.1.203:82'
+ZABBIX_SERVER = 'http://119.79.232.99:82'
+#ZABBIX_SERVER = 'http://192.168.1.203:82'
 zapi = ZabbixAPI(ZABBIX_SERVER)
 # Login to the Zabbix API
 zapi.login('Admin', 'zabbix')
@@ -32,3 +32,7 @@ Out[50]:
  u'10242': u'117.135.139.237'}
 
  <a href="{% url 'screens:hostgraph_detail' host_name %}">{{ host_name }}</a>
+
+
+ test = zapi.graph.get(hostids=10242, output='extend')
+test_1 = [{'name': i['name'], 'graphid':i['graphid'], 'group': i['name'].split()[0]} for i in test]
