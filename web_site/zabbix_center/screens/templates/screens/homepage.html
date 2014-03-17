@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta http-equiv="refresh" content="300">
     <title>{% block bootstrap3_title %}{% endblock %}</title>
     {% bootstrap_css %}
     <link href="http://getbootstrap.com/examples/carousel/carousel.css" rel="stylesheet">
     <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css" rel="stylesheet">
+    <link href="http://v3.bootcss.com/docs-assets/css/docs.css" rel="stylesheet">
   </head>
-  <body>
+  <body style="padding-bottom: 70px">
     {% block bootstrap3_content %}{% endblock %}
     {% bootstrap_javascript jquery=True %}
 
@@ -20,5 +22,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+    <script src="http://v3.bootcss.com/docs-assets/js/application.js"></script>
+    <link type="text/css" rel="stylesheet" href="http://192.168.1.203:82/screens/body.css" />
   </body>
 </html>

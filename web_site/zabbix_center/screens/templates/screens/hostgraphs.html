@@ -1,12 +1,30 @@
-{% extends 'screens/base.html' %}
-{% block title %}{{ graphs.0.host }}{% endblock %}
-{% block content %}
+{% extends 'screens/base.html' %} {% block title %}{{ graphs.0.host }}{% endblock %} {% block content %}
+<div class="page-header">
+<div class="container" id="hostgraphs" padding: 0 15px;>
+<div class="row">
 
-<h2>{{ graphs.0.host }}</h2>
-<ul>
-	{% for graph in graphs.0.graphs %}
-		<li><img src="http://119.97.226.138:82/chart2.php?period=3600&graphid={{ graph.graphid }}"</li>
-	{% endfor %}	
-</ul>
-
+	
+	<div class="col-md-9" role="main">
+			<ul>{% for graph in graphs %}
+				<h6 id='{{ graph.graphid }}'>{{ graph.name }}</h6>
+				<li>
+				<img src="http://192.168.1.203:82/chart2.php?period=3600&graphid={{ graph.graphid }}&width=500" alt='' /> 
+				{% endfor %}
+				</li>
+			</ul> 
+	</div>
+	<div class="col-md-3">
+          <div class="bs-sidebar hidden-print" role="complementary">
+            <ul class="nav bs-sidenav">
+                	{% for graph in graphs %}
+                	<li>
+  					<a href="#{{ graph.graphid }}">{{ graph.name }}</a>
+  					</li>
+  					{% endfor %}		
+            </ul>
+          </div>
+        </div>
+    </div>
+</div>
+</div>
 {% endblock %}
