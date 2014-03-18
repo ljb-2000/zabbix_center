@@ -35,4 +35,13 @@ Out[50]:
 
 
  test = zapi.graph.get(hostids=10242, output='extend')
-test_1 = [{'name': i['name'], 'graphid':i['graphid'], 'group': i['name'].split()[0]} for i in test]
+test_1 = [{'name': i['name'], 'graphid':i['graphid'], 'group': i['name'].split()[0].capitalize()} for i in test]
+
+test_list = {}.fromkeys([item['group'] for item in test_1]).keys()
+
+result_list = [{'name': item , 'content':[]} for item in test_list]
+
+for x in result_list:
+	for i in test_1:
+		if i['group'] == x['name']:
+			x['content'].append({'graphid': i['graphid'], 'name': i['name']})
