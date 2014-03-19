@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load bootstrap3 %}
+<html>
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta http-equiv="refresh" content="120">
+
+    <title>{% block bootstrap3_title %}{% endblock %}</title>
+    <!-- Bootstrap core CSS -->
+    {% bootstrap_css %}
+    <!-- Documentation extras -->
+    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+<!--
+    <link href="http://getbootstrap.com/examples/carousel/carousel.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css" rel="stylesheet">
+-->
+
+<!--[if lt IE 9]><script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+  </head>
+
+  <body style="padding-bottom: 70px">
+    {% block bootstrap3_content %}{% endblock %}
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    {% bootstrap_javascript jquery=True %}
+    <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+    <!--<script src="http://cdn.bootcss.com/holder/2.0/holder.min.js"></script>
+    <script src="http://cdn.bootcss.com/highlight.js/7.3/highlight.min.js"></script>
+    <script src="http://v3.bootcss.com/docs-assets/js/application.js"></script>-->
+  </body>
+</html>

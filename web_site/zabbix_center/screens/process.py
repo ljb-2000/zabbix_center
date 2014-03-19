@@ -70,3 +70,7 @@ class hid_process(process_base):
 
 		return result_list
 
+	def hid_2_host_name(self):
+		'''
+		'''
+		return self.zapi.host.get(hostids=self.host_id, output='extend')

@@ -20,7 +20,8 @@ def grouphost_detail(request, group_id):
 
 def hostgraph_detail(request, host_id):
 	graphs = hid_process(host_id).hid_2_graph_list()
-	context = {'graphs': graphs}
+	hosts = hid_process(host_id).hid_2_host_name()
+	context = {'graphs': graphs, 'hosts': hosts}
 	return render(request, 'screens/hostgraphs.html', context)
 
 
