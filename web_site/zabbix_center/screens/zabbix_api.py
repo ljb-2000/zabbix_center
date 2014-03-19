@@ -1,8 +1,8 @@
 # import zabbixAPI
 from pyzabbix import ZabbixAPI
 # The hostname at which the Zabbix web interface is available
-ZABBIX_SERVER = 'http://119.79.232.99:82'
-#ZABBIX_SERVER = 'http://192.168.1.203:82'
+#ZABBIX_SERVER = 'http://119.79.232.99:82'
+ZABBIX_SERVER = 'http://192.168.1.203:82'
 zapi = ZabbixAPI(ZABBIX_SERVER)
 # Login to the Zabbix API
 zapi.login('Admin', 'zabbix')

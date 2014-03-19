@@ -2,11 +2,34 @@
 {% block title %} {{ groups.name }} {% endblock %}
 {% block content %}
 
+{% if host_list %}
 <h1>{{ groups.name }}</h1>
-<ul>
-	{% for host in host_list %}
-	<li><a href="{% url 'screens:hostgraph_detail' host.hostid %}">{{ host.host }}</a></li>
-	{% endfor %}
-</ul>
+<div class="container bs-docs-container">
+<div class="row">
+<div class="col-md-9" role="main">
+<div class="bs-example">
+    <table class="table">
+	<thead>
+        <tr>
+          <th class="info">#</th>
+          <th class="info">Hosts Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="active">
+          {% for host in host_list %}
+          <td class="success">{{ forloop.counter }}</td>
+          <td class="success"><a href="{% url 'screens:hostgraph_detail' host.hostid %}"><strong>{{ host.host }}</strong></a></td>
+        </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+{% else %}
+<div class="alert alert-danger">There isn't any hosts!!!</div>
 
+{% endif %}
 {% endblock %}

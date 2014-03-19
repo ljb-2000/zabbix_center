@@ -25,6 +25,12 @@ def hostgraph_detail(request, host_id):
 	return render(request, 'screens/hostgraphs.html', context)
 
 
+def issue_detail(request):
+	issues = last_issue().current_issues()
+	context = {'issues': issues}
+	return render(request, 'screens/last_issues.html', context)
+
+
 def tests(request):
 	#context = {'result': model_tests('root','123456','zabbix')}
 	test_dic_test = [{'test_inside1': 'test_inside1'},{'test_inside2':'test_inside2'}]

@@ -74,3 +74,42 @@ class hid_process(process_base):
 		'''
 		'''
 		return self.zapi.host.get(hostids=self.host_id, output='extend')
+
+class last_issue(process_base):
+	def __init__(self):
+		process_base.__init__(self)
+
+	def current_issues(self):
+		'''
+		[{u'comments': u'',
+  		u'description': u'Zabbix poller processes more than 75% busy',
+		  u'error': u'',
+		  u'expression': u'({TRIGGER.VALUE}=0&{13124}>75)|({TRIGGER.VALUE}=1&{13124}>65)',
+		  u'flags': u'0',
+		  u'host': u'Zabbix server',
+		  u'hostid': u'10084',
+		  u'hostname': u'Zabbix server',
+		  u'items': [{u'itemid': u'23264'}],
+		  u'lastchange': u'1395215684',
+		  u'priority': u'3',
+		  u'state': u'0',
+		  u'status': u'0',
+		  u'templateid': u'13091',
+		  u'triggerid': u'13479',
+		  u'type': u'0',
+		  u'url': u'',
+		  u'value': u'0',
+		  u'value_flag': u'0'}]
+		'''
+		# Get a list of all issues (AKA tripped triggers)
+		triggers = self.zapi.trigger.get(only_true=1,
+    		skipDependent=1,
+    		monitored=1,
+    		active=1,
+    		output='extend',
+    		expandDescription=1,
+    		expandData='host',
+    		selectItems='',
+		)
+		trigger = [item for item in triggers if item['value'] == '1']
+		return trigger

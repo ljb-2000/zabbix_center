@@ -3,7 +3,6 @@
 {% load url from future %}
 {% block bootstrap3_content %}
 <a class="sr-only" href="#content">Skip to main content</a>
-
 <!-- master nav -->
 <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
       <div class="container">
@@ -18,10 +17,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">home</a></li>
-            <li><a href="#">form</a></li>
-            <li><a href="#">form_horizontal</a></li>
-            <li><a href="#">form_inline</a></li>
+            <li class="active"><a href="{% url 'screens:group_index' %}">Hosts by groups</a></li>
+            <li><a href="{% url 'screens:issue_detail' %}">Last Issue</a></li>
+            <li><a href="http://192.168.1.203:82">Zabbix Server</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Form <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -58,27 +56,17 @@
 ================================================== -->
 <footer class="bs-docs-footer" role="contentinfo">
   <div class="container">
-    <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
-    <p>Maintained by the <a href="https://github.com/twbs?tab=members">core team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>
-    <p>Code licensed under <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+    <p>2014.03.19</p>
+    <p>Maintained by the stefanmonkey</p>
+    <p>武汉鱼之乐信息技术有限公司</p>
     <ul class="bs-docs-footer-links muted">
-      <li>Currently v3.1.1</li>
+      <li>Currently v0.1</li>
       <li>&middot;</li>
-      <li><a href="https://github.com/twbs/bootstrap">GitHub</a></li>
+      <li><a href="http://192.168.1.203:82">Zabbix Server</a></li>
       <li>&middot;</li>
       <li><a href="../getting-started/#examples">Examples</a></li>
       <li>&middot;</li>
-      <li><a href="../2.3.2/">v2.3.2 docs</a></li>
-      <li>&middot;</li>
       <li><a href="../about/">About</a></li>
-      <li>&middot;</li>
-      <li><a href="http://expo.getbootstrap.com">Expo</a></li>
-      <li>&middot;</li>
-      <li><a href="http://blog.getbootstrap.com">Blog</a></li>
-      <li>&middot;</li>
-      <li><a href="https://github.com/twbs/bootstrap/issues?state=open">Issues</a></li>
-      <li>&middot;</li>
-      <li><a href="https://github.com/twbs/bootstrap/releases">Releases</a></li>
     </ul>
   </div>
 </footer>

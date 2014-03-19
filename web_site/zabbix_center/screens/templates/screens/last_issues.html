@@ -1,0 +1,39 @@
+{% extends 'screens/base.html' %} {% block title %}{{ graphs.0.host }}{% endblock %} {% block content %}
+    <!-- Docs page layout -->
+    <div class="bs-docs-header" id="content">
+      <div class="container">
+        <h1>Last issues</h1>
+        <p>It include all last issues history graphs in 1 hour.</p>
+      </div>
+    </div>
+
+    <!-- Callout for the old docs link -->
+<div class="container bs-docs-container">
+<div class="row">
+  <div class="col-md-9" role="main">
+    <!-- Global Bootstrap settings
+================================================== -->
+    <div class="bs-docs-section">
+      {% for issue in issues %}
+        <h2 id='{{ issue.triggerid }}'><span class="label label-primary">{{ issue.hostname }}</span></h2>
+        <h4><span class="label label-info">{{ issue.description }}</span></h4>
+        <li>
+        <img src="http://192.168.1.203:82/chart.php?itemid={{ issue.items.0.itemid }}&period=3600&width=700" alt='' /> 
+        </li>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-md-3">
+        <div class="bs-docs-sidebar hidden-print" role="complementary">
+            <ul class="nav bs-docs-sidenav">
+            {% for issue in issues %}
+            <li>
+            <a href='#{{ issue.triggerid }}'>{{ issue.description }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+</div>
+</div>
+{% endblock %}
