@@ -1,5 +1,6 @@
 # import zabbixAPI
 from pyzabbix import ZabbixAPI
+from datetime import datetime
 # The hostname at which the Zabbix web interface is available
 
 # input groupid 
@@ -40,6 +41,32 @@ class gid_process(process_base):
 
 		for i in host_list['hosts']:
 			i['host'] = self.zapi.host.get(filter={'hostid':i['hostid']}, output='extend')[0]['name']
+			temp = self.zapi.item.get(hostids=i['hostid'], output='extend', search={'name':'_info'})
+			for item in temp:
+				if 'host boot time' in item['name'].lower():
+					# system boot time
+					i['boot_time'] = self.clock_2_time(item['lastvalue'])
+				elif 'cpu numbers' in item['name'].lower():
+					# cpu numbers
+					i['cpu_number'] = item['lastvalue']
+				elif 'host name' in item['name'].lower():
+					# host name
+					i['host_name'] = item['lastvalue']
+				elif 'cpu model' in item['name'].lower():
+					# cpu model
+					i['cpu_model'] = item['lastvalue']
+				elif 'system information' in item['name'].lower():
+					# kernel model
+					i['kernel_info'] = item['lastvalue'].split()[2]
+				elif 'system uptime' in item['name'].lower():
+					# system uptime
+					i['uptime'] = self.clock_2_timedelta(item['lastvalue'])
+				elif 'total memory' in item['name'].lower():
+					# total memory size
+					i['total_memory'] = int(item['lastvalue']) / 1024 / 1024
+				else:
+					pass
+
 
 		return host_list['hosts']
 
@@ -48,6 +75,21 @@ class gid_process(process_base):
 		'''
 		'''
 		return self.zapi.hostgroup.getobjects(groupid=self.group_id)
+
+	def clock_2_time(self, clock_time):
+		'''
+		'''
+		return datetime.fromtimestamp(int(clock_time)).strftime('%Y-%m-%d %X')
+
+	def clock_2_timedelta(self, clock_time):
+		'''
+
+		'''
+		time_delta = datetime.fromtimestamp(int(clock_time)) - datetime.fromtimestamp(0) 
+		delta_day = time_delta.days
+		delta_hour = time_delta.seconds / 3600
+		delta_min = time_delta.seconds % 3600 / 60
+		return '%s days, %s hours, %s minutes' % (delta_day, delta_hour, delta_min)
 
 	
 class hid_process(process_base):
