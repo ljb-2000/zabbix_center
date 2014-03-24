@@ -1,4 +1,4 @@
-#!/home/stefanie/project/zabbix_center/bin/python
+#!/home/zabbix_center/bin/python
 
 # -*- coding: utf-8 -*-
 import re

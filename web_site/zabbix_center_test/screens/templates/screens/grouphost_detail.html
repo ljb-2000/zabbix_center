@@ -1,0 +1,49 @@
+{% extends 'screens/base.html' %}
+{% block title %} {{ groups.name }} {% endblock %}
+{% block content %}
+
+{% if host_list %}
+<h1>{{ groups.name }}</h1>
+<div class="container bs-docs-container">
+<div class="row">
+<div class="col-md-12" role="main">
+<div class="table-responsive">
+    <table class="table table-bordered">
+	<thead>
+        <tr>
+          <th class="info">#</th>
+          <th class="info">IP Addr</th>
+          <th class="info">Boot Time</th>
+          <th class="info">Host Name</th>
+          <th class="info">Cpu Numbers</th>
+          <th class="info">Cpu Model</th>
+          <th class="info">Kernel Model</th>
+          <th class="info">Memory Size</th>
+          <th class="info">Uptime</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="active">
+          {% for host in host_list %}
+          <td class="success">{{ forloop.counter }}</td>
+          <td class="success"><a href="{% url 'screens:hostgraph_detail' host.hostid %}"><strong>{{ host.host }}</strong></a></td>
+          <td class="warning">{{ host.boot_time }}</td>
+          <td class="warning">{{ host.host_name }}</td>
+          <td class="warning">{{ host.cpu_number }}</td>
+          <td class="warning">{{ host.cpu_model }}</td>
+          <td class="warning">{{ host.kernel_info }}</td>
+          <td class="warning">{{ host.total_memory }} MB</td>
+          <td class="warning">{{ host.uptime }}</td>
+        </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+{% else %}
+<div class="alert alert-danger">There isn't any hosts!!!</div>
+
+{% endif %}
+{% endblock %}

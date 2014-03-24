@@ -1,0 +1,48 @@
+{% extends 'screens/base.html' %} {% block title %}{{ graphs.0.host }}{% endblock %} {% block content %}
+    <!-- Docs page layout -->
+    <div class="bs-docs-header" id="content">
+      <div class="container">
+        <h1>{{ hosts.0.name }} Graphs</h1>
+        <p>It include all {{ hosts.0.name }}'s graphs.</p>
+      </div>
+    </div>
+
+    <!-- Callout for the old docs link -->
+<div class="container bs-docs-container">
+<div class="row">
+  <div class="col-md-9" role="main">
+    <!-- Global Bootstrap settings
+================================================== -->
+    <div class="bs-docs-section">
+      {% for graph in graphs %}
+        <h2 id='{{ graph.name }}'><span class="label label-primary">{{ graph.name }}</span></h2>
+        {% for item in graph.content %}
+        <h4 id='{{ item.graphid }}'><span class="label label-info">{{ item.name }}</span></h4>
+        <li>
+        <img src="http://192.168.1.203:82/chart2.php?period=3600&graphid={{ item.graphid }}&width=700" alt='' /> 
+        </li>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-md-3">
+        <div class="bs-docs-sidebar hidden-print" role="complementary">
+            <ul class="nav bs-docs-sidenav">
+            {% for graph in graphs %}
+            <li>
+            <a href='#{{ graph.name }}'>{{ graph.name }}</a>
+            <ul class="nav">
+                  {% for item in graph.content %}
+                  <li>
+                  <a href="#{{ item.graphid }}">{{ item.name }}</a>
+                  </li>
+            {% endfor %}    
+            </ul>
+            </li>
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+</div>
+</div>
+{% endblock %}

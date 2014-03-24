@@ -1,0 +1,40 @@
+{% extends 'screens/base.html' %}
+{% block title %}ZABBIX GRUOPS{% endblock %}
+{% block content %}
+
+{% if latest_groups_list %}
+
+<div class="container bs-docs-container">
+<div class="row">
+  <div class="col-md-9" role="main">
+<div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="info">#</th>
+          <th class="info">Hosts Groups</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="active">
+          {% for groups in latest_groups_list %}
+          <td class="success">{{ forloop.counter }}</td>
+          <td class="success"><a href="{% url 'screens:grouphost_detail' groups.groupid %}"><strong>{{ groups.name }}</strong></a></td>
+        </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% else %}
+    <p>No Groups are available.</p>
+{% endif %}
+</div>
+</div>
+</div>
+
+
+
+      
+    
+
+{% endblock %}
