@@ -15,7 +15,7 @@
 ================================================== -->
     <div class="bs-docs-section">
       {% for issue in issues %}
-        <h2 id='{{ issue.triggerid }}'><span class="label label-primary">{{ issue.hostname }}</span></h2>
+        <h2 id='{{ issue.triggerid }}'><a href="{% url 'screens:hostgraph_detail' issue.hostid %}"><span class="label label-primary">{{ issue.hostname }}</span></a></h2>
         <h4><span class="label label-info">{{ issue.description }}</span></h4>
         <li>
         <img src="http://192.168.1.203:82/chart.php?itemid={{ issue.items.0.itemid }}&period=3600&width=700" alt='' /> 
