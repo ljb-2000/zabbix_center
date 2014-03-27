@@ -1,4 +1,4 @@
-{% extends 'screens/base.html' %} {% block title %}{{ graphs.0.host }}{% endblock %} {% block content %}
+{% extends 'base/base.html' %} {% block title %}{{ graphs.0.host }}{% endblock %} {% block content %}
     <!-- Docs page layout -->
     <div class="bs-docs-header" id="content">
       <div class="container">
@@ -18,7 +18,7 @@
         <h2 id='{{ issue.triggerid }}'><a href="{% url 'screens:hostgraph_detail' issue.hostid %}"><span class="label label-primary">{{ issue.hostname }}</span></a></h2>
         <h4><span class="label label-info">{{ issue.description }}</span></h4>
         <li>
-        <img src="http://119.79.232.99:82/chart.php?itemid={{ issue.items.0.itemid }}&period=3600&width=700" alt='' /> 
+        <img src="{{ zabbix_url }}/chart.php?itemid={{ issue.items.0.itemid }}&period=3600&width=700" alt='' /> 
         </li>
       {% endfor %}
     </div>

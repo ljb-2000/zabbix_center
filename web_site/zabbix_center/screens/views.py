@@ -2,12 +2,14 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 # Create your views here.
 from screens.models import Groups, HostsGroups, model_tests
-from screens.process import *
+from api_process.process import *
 
+zabbix_url = process_base().zabbix_url
 
 def group_index(request):
     #latest_groups_list = Groups.objects.all()
-	context = {'latest_groups_list': process_base().gid_2_group_list()}
+	context = {'latest_groups_list': process_base().gid_2_group_list(),
+				'zabbix_url': zabbix_url}
 	return render(request, 'screens/group_index.html', context)
 
 
@@ -21,13 +23,14 @@ def grouphost_detail(request, group_id):
 def hostgraph_detail(request, host_id):
 	graphs = hid_process(host_id).hid_2_graph_list()
 	hosts = hid_process(host_id).hid_2_host_name()
-	context = {'graphs': graphs, 'hosts': hosts}
+	context = {'graphs': graphs, 'hosts': hosts, 'zabbix_url': zabbix_url}
 	return render(request, 'screens/hostgraphs.html', context)
 
 
 def issue_detail(request):
 	issues = last_issue().current_issues()
-	context = {'issues': issues}
+	context = {'issues': issues, 'zabbix_url': zabbix_url}
+
 	return render(request, 'screens/last_issues.html', context)
 
 

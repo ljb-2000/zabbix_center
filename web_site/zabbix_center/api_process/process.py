@@ -7,17 +7,22 @@ from datetime import datetime
 # output host and hostid in {'host': host, 'hostid': hostid}
 class process_base(object):
 	def __init__(self):
-		#ZABBIX_SERVER = 'http://192.168.1.203:82'
-		ZABBIX_SERVER = 'http://119.79.232.99:82'
+		ZABBIX_SERVER = 'http://192.168.1.203:82'
+		#ZABBIX_SERVER = 'http://119.79.232.99:82'
 		self.zapi = ZabbixAPI(ZABBIX_SERVER)
 		# Login to the Zabbix API
 		self.zapi.login('Admin', 'zabbix')
+		self.zabbix_url = ZABBIX_SERVER
 
 
 	def gid_2_group_list(self):
 		'''
 		'''
 		return self.zapi.hostgroup.get(output='extend')
+
+	def zabbix_url(self):
+		# just for view.py intial the zabbix_url
+		return self.zabbix_url
 
 
 class gid_process(process_base):

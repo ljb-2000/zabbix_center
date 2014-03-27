@@ -105,7 +105,7 @@ TEMPLATE_DIRS = (
 
 
 # debug_toolbar settings
-if not DEBUG:
+if DEBUG:
     INTERNAL_IPS = ('192.168.2.195',)
     MIDDLEWARE_CLASSES += (
         'debug_toolbar.middleware.DebugToolbarMiddleware',
