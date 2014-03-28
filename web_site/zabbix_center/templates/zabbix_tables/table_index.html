@@ -1,4 +1,6 @@
-
+{% extends 'base/base.html' %}
+{% block title %}ZABBIX Mysql Tables{% endblock %}
+{% block content %}.
 <h3>acknowledges</h3>
 <TABLE BORDER=1><TR><TH>Field</TH><TH>Type</TH><TH>Null</TH><TH>Key</TH><TH>Default</TH><TH>Extra</TH></TR><TR><TD>acknowledgeid</TD><TD>bigint(20) unsigned</TD><TD>NO</TD><TD>PRI</TD><TD>NULL</TD><TD></TD></TR><TR><TD>userid</TD><TD>bigint(20) unsigned</TD><TD>NO</TD><TD>MUL</TD><TD>NULL</TD><TD></TD></TR><TR><TD>eventid</TD><TD>bigint(20) unsigned</TD><TD>NO</TD><TD>MUL</TD><TD>NULL</TD><TD></TD></TR><TR><TD>clock</TD><TD>int(11)</TD><TD>NO</TD><TD>MUL</TD><TD>0</TD><TD></TD></TR><TR><TD>message</TD><TD>varchar(255)</TD><TD>NO</TD><TD></TD><TD></TD><TD></TD></TR></TABLE></br>
 <h3>actions</h3>
@@ -215,3 +217,5 @@
 <TABLE BORDER=1><TR><TH>Field</TH><TH>Type</TH><TH>Null</TH><TH>Key</TH><TH>Default</TH><TH>Extra</TH></TR><TR><TD>usrgrpid</TD><TD>bigint(20) unsigned</TD><TD>NO</TD><TD>PRI</TD><TD>NULL</TD><TD></TD></TR><TR><TD>name</TD><TD>varchar(64)</TD><TD>NO</TD><TD>MUL</TD><TD></TD><TD></TD></TR><TR><TD>gui_access</TD><TD>int(11)</TD><TD>NO</TD><TD></TD><TD>0</TD><TD></TD></TR><TR><TD>users_status</TD><TD>int(11)</TD><TD>NO</TD><TD></TD><TD>0</TD><TD></TD></TR><TR><TD>debug_mode</TD><TD>int(11)</TD><TD>NO</TD><TD></TD><TD>0</TD><TD></TD></TR></TABLE></br>
 <h3>valuemaps</h3>
 <TABLE BORDER=1><TR><TH>Field</TH><TH>Type</TH><TH>Null</TH><TH>Key</TH><TH>Default</TH><TH>Extra</TH></TR><TR><TD>valuemapid</TD><TD>bigint(20) unsigned</TD><TD>NO</TD><TD>PRI</TD><TD>NULL</TD><TD></TD></TR><TR><TD>name</TD><TD>varchar(64)</TD><TD>NO</TD><TD>MUL</TD><TD></TD><TD></TD></TR></TABLE></br>
+
+{% endblock %}
