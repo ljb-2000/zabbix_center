@@ -3,6 +3,13 @@ from __future__ import unicode_literals
 
 from django import forms
 
+class ContactForm(froms.Form):
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField()
+    sender = forms.EmailField()
+    cc_myself = forms.BooleanField(required=False)
+
+    
 
 RADIO_CHOICES = (
     ('1', 'Radio 1'),
@@ -24,7 +31,7 @@ MEDIA_CHOICES = (
 )
 
 
-class ContactForm(forms.Form):
+class ContactForm_back(forms.Form):
     subject = forms.CharField(max_length=100, help_text='Maximum 100 chars.')
     message = forms.CharField(required=False, help_text='<i>my_help_text</i>')
     sender = forms.EmailField()
