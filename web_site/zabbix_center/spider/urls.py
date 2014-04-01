@@ -5,6 +5,8 @@ from spider import views
 urlpatterns = patterns('',
 	# ex: /polls/
 	url(r'^$', views.spider_index, name='spider_index'),
+    (r'^search/$', views.search),
+    (r'^contact/$', views.contact),
 	# ex: /polls/5/
 	#url(r'^hostgroup/(?P<group_id>\d+)/$', views.grouphost_detail, name='grouphost_detail'),
     #url(r'^tests', views.tests, name='tests'),

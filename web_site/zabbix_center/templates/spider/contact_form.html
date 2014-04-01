@@ -1,0 +1,30 @@
+<html>
+<head>
+	<title>Contact us</title>	
+</head>
+<body>
+	<h1>Contact us</h1>
+	 {% if form.errors %}
+	 	<p style="color: red;">
+	 		Please correct the error{{ form.errors|pluralize }} below.
+	 	</p>
+	 {% elif form %}
+		{{ form.as_ul }}
+		{% for field in form %}
+		<div class="fieldWrapper">
+			{{ field.errors }}
+			{{ field.label_tag }} {{ field }}
+		</div>
+		{% endfor %}
+	 {% endif %}
+
+	 <form action="" method="post">
+	 	{% csrf_token %}
+		<tables>
+			{{ form.as_table }}
+		</tables>
+		<input type="submit" value="Submit">
+	 </form>
+</body>
+
+</html>

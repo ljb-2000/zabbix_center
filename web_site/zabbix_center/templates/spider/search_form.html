@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title>Search</title>
+</head>
+<body>
+	{% if errors %}
+	<ul>
+		{% for error in errors %}
+		<li>{{ error }}</li>
+		{% endfor %}
+	</ul>
+	{% elif query %}
+	{{ query }}
+	{% endif %}
+
+	<form action="/spider/search/" method="get">
+		<input type="text" name="q">
+		<input type="submit" value="Search">
+	</form>
+</body>
+</html>
