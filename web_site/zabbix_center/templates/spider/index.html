@@ -1,4 +1,6 @@
 {% extends 'base/base.html' %}
+{% load bootstrap3 %}
+
 {% block title %}ZABBIX Spider{% endblock %}
 {% block content %}.
 
@@ -16,46 +18,16 @@
   <div class="col-md-12" role="main">
     <!-- Global Bootstrap settings
 ================================================== -->
-    <div class="bs-docs-section">
-    	<form role="form">
-    	<div class="col-md-4" role="ip_list">
-    		<div class="form-group">
-    		<textarea class="form-control" rows="12"></textarea>
-    		</div>
-    		<!--<textarea class="form-control" rows="12"></textarea>-->
-    	</div>
-    	<div class="col-md-4" role="template_list">
-  			<div class="form-group">
-    			<label for="exampleInputEmail1">Email address</label>
-    			<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-  			</div>
-  		
-		</div>
-		<div class="col-md-4" role="group_list">
-			group_list
-		</div>
-		</form>
+  <div class="bs-docs-section">
+    <form role='form' method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons submit="OK" reset="Cancel" %}{% endbuttons %}
+    </form>
   </div>
   </div>
-  <!--<div class="col-md-3">
-        <div class="bs-docs-sidebar hidden-print" role="complementary">
-            <ul class="nav bs-docs-sidenav">
-            <li>
-            <a href='#'>temp</a>
-            </li>
-        </ul>
-        <a class="back-to-top" href="#top">
-          Back to top
-        </a>
-      </div>
-    </div>-->
 </div>
 </div>
 
 
 {% endblock %}
-
-
-
-    
-

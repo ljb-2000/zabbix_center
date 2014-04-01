@@ -5,11 +5,25 @@ from django.http import HttpResponse, HttpResponseRedirect
 #from screens.models import Groups, HostsGroups, model_tests
 from api_process.process import *
 zabbix_url = process_base().zabbix_url
-from spider.forms import ContactForm
+template = Spider().template_list()
+
+from spider.forms import ContactForm, addHostsForm
+
 
 
 def spider_index(request):
-    context = {'zabbix_url': zabbix_url}
+    if request.method == 'POST':
+        form = addHostsForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+
+            tests = request
+            hosts_list = cd['hosts']
+            return render(request, 'spider/index.html', {'cd': cd, 'request': request})
+    else:
+        form = addHostsForm()
+
+    context = {'zabbix_url': zabbix_url, 'form': form}
     return render(request, 'spider/index.html', context)
 
 

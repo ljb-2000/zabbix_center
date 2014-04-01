@@ -10,8 +10,8 @@ from datetime import datetime
 class process_base(object):
 
     def __init__(self):
-        ZABBIX_SERVER = 'http://192.168.1.203:82'
-        #ZABBIX_SERVER = 'http://119.79.232.99:82'
+        #ZABBIX_SERVER = 'http://192.168.1.203:82'
+        ZABBIX_SERVER = 'http://119.79.232.99:82'
         self.zapi = ZabbixAPI(ZABBIX_SERVER)
         # Login to the Zabbix API
         self.zapi.login('Admin', 'zabbix')
@@ -170,3 +170,46 @@ class last_issue(process_base):
                                          )
         trigger = [item for item in triggers if item['value'] == '1']
         return trigger
+
+class Spider(process_base):
+
+    def __init__(self):
+        process_base.__init__(self)
+
+    def template_list(self):
+        '''
+        [u'available': u'0',
+        u'disable_until': u'0',
+        u'error': u'',
+        u'errors_from': u'0',
+        u'flags': u'0',
+        u'host': u'JofSoft Linux disk autodiscovery_fix',
+        u'ipmi_authtype': u'0',
+        u'ipmi_available': u'0',
+        u'ipmi_disable_until': u'0',
+        u'ipmi_error': u'',
+        u'ipmi_errors_from': u'0',
+        u'ipmi_password': u'',
+        u'ipmi_privilege': u'2',
+        u'ipmi_username': u'',
+        u'jmx_available': u'0',
+        u'jmx_disable_until': u'0',
+        u'jmx_error': u'',
+        u'jmx_errors_from': u'0',
+        u'lastaccess': u'0',
+        u'maintenance_from': u'0',
+        u'maintenance_status': u'0',
+        u'maintenance_type': u'0',
+        u'maintenanceid': u'0',
+        u'name': u'JofSoft Linux disk autodiscovery_fix',
+        u'proxy_hostid': u'0',
+        u'snmp_available': u'0',
+        u'snmp_disable_until': u'0',
+        u'snmp_error': u'',
+        u'snmp_errors_from': u'0',
+        u'status': u'3',
+        u'templateid': u'10248'}]
+        '''
+        templates = self.zapi.template.get(output='extend')
+
+        return templates

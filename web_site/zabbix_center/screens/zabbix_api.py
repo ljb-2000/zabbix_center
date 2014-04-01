@@ -45,3 +45,5 @@ for x in result_list:
 	for i in test_1:
 		if i['group'] == x['name']:
 			x['content'].append({'graphid': i['graphid'], 'name': i['name']})
+
+# get template list 
