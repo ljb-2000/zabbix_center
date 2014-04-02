@@ -1,6 +1,56 @@
 {% extends 'base/base.html' %}
-{% block title %}ZABBIX CENTER{% endblock %}
-{% block content %}.
+{% block title %}OPS CENTER{% endblock %}
+{% block content %}
+<div class="container theme-showcase" role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="bs-docs-header" id="content">
+      <div class="container">
+        <h1>Welcome to the JOFSOFT OPS Center!</h1>
+        <p>This is designed for OPSer!</p>
+        <p>Here are tools for the OPS work use.</p>
+        <p><a href="{% url 'screens:issue_detail' %}" class="btn btn-primary btn-lg" role="button">Enter in Screens&raquo;</a></p>
+
+      </div>
+    </div>
+
+      
+      <div class="page-header">
+        <h1>Tools</h1>
+      </div>
+      <p>
+      	<a href="http://mail.sothink.com/extman">
+        <button type="button" class="btn btn-lg btn-info">Sothink Mail Extman</button>
+        </a>
+      </p>
+      <p>
+        <a href="http://mail.sothink.com/extmail">
+        <button type="button" class="btn btn-lg btn-info">Sothink Mail Extmail</button>
+        </a>        
+      </p>
+      <p>
+        <a href="{{ zabbix_url }}">
+        <button type="button" class="btn btn-lg btn-info">Zabbix Server</button>
+        </a>        
+      </p>
+      
+
+      <div class="page-header">
+        <h1>Game Show</h1>
+      </div>
+      <img data-src="holder.js/200x200" class="img-thumbnail" alt="A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera">
+
+
+      <div class="page-header">
+        <h1>Introduction</h1>
+      </div>
+      <div class="well">
+        <p>This system includ zabbix server , zabbix_spider, zabbix_screens, all in one.</p>
+        <p>It is designed and maintained by stefanmonkey</p>
+      </div>
+
+
+</div> <!-- /container -->
 
 
 {% endblock %}
