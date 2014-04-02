@@ -15,7 +15,9 @@ urlpatterns = patterns('',
     
     # zabbix_center app page
     url(r'^$', include('zabbix_center.urls_url', namespace="zabbix_center")),
+    # zabbix mysql tables description
     url(r'^zabbix_tables/', include('zabbix_tables.urls', namespace="zabbix_tables")),
+    # OPS components
     url(r'^screens/', include('screens.urls', namespace="screens")),
     url(r'^spider/', include('spider.urls', namespace="spider")),
 
