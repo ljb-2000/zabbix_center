@@ -9,7 +9,6 @@ zabbix_url = process_base().zabbix_url
 from spider.forms import ContactForm, addHostsForm
 
 
-
 def spider_index(request):
     if request.method == 'POST':
         form = addHostsForm(request.POST)
@@ -24,7 +23,7 @@ def spider_index(request):
             for host in hosts:
                 test = Spider().addHosts(host, group, templateids)
                 response.append(test)
-            return render(request, 'spider/form_response.html', {'zabbix_url': zabbix_url 
+            return render(request, 'spider/form_response.html', {'zabbix_url': zabbix_url ,
                                                                  'response': response})
     else:
         form = addHostsForm()

@@ -18,22 +18,49 @@
       <div class="page-header">
         <h1>Tools</h1>
       </div>
-      <p>
-      	<a href="http://mail.sothink.com/extman">
-        <button type="button" class="btn btn-lg btn-default">Sothink Mail Extman</button>
-        </a>
-      </p>
-      <p>
-        <a href="http://mail.sothink.com/extmail">
-        <button type="button" class="btn btn-lg btn-default">Sothink Mail Extmail</button>
-        </a>        
-      </p>
-      <p>
-        <a href="{{ zabbix_url }}">
-        <button type="button" class="btn btn-lg btn-default">Zabbix Server</button>
-        </a>        
-      </p>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Email Tools</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <a href="http://mail.sothink.com/extmail">
+                <li class="list-group-item list-group-item-info">
+                  Sothink Mail Extmail
+                </li>
+                </a>
+                <a href="http://mail.sothink.com/extman">
+                <li class="list-group-item list-group-item-info">
+                  Sothink Mail Extman
+                </li>
+                </a>
+              </ul>
+            </div>
+          </div>
+        </div><!-- /.col-sm-4 -->
+
+        <div class="col-sm-4">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Zabbix Tools</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <a href="{{ zabbix_url }}">
+                <li class="list-group-item list-group-item-info">
+                  Zabbix Server
+                </li>
+                </a>
+              </ul>
+            </div>
+          </div>
+        </div><!-- /.col-sm-4 -->
+
+      </div>
       
+
 
       <div class="page-header">
         <h1>Game Show</h1>
