@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}ZABBIX Spider{% endblock %}
+{% block content %}.
+
+<!-- Docs page layout -->
+    <div class="bs-docs-header" id="content">
+      <div class="container">
+        <h1>Zabbix Spider</h1>
+        <p>Add monitored host with specify template and groups.</p>
+      </div>
+    </div>
+
+    <!-- Callout for the old docs link -->
+<div class="container bs-docs-container">
+<div class="row">
+  <div class="col-md-12" role="main">
+    <!-- Global Bootstrap settings
+================================================== -->
+  	<div class="bs-docs-section">
+		<h1><span class="label label-success">Congratulations!!!</span></h1>
+			<h3><span class="label label-info">You have added host successfully!!! </span></h3>
+		{% if response %}
+		<div class="alert alert-success">
+			{% for item in response %}
+					<li>{{ item }}</li>
+			{% endfor %}
+		</div>
+		{% endif %}
+		<a href="{% url 'spider:spider_index' %}"><span class="label label-primary">Go Back to the page spider index</span></a>
+	</div>
+  </div>
+</div>
+</div>
+
+
+{% endblock %}		

@@ -10,8 +10,8 @@ from datetime import datetime
 class process_base(object):
 
     def __init__(self):
-        #ZABBIX_SERVER = 'http://192.168.1.203:82'
-        ZABBIX_SERVER = 'http://119.79.232.99:82'
+        ZABBIX_SERVER = 'http://192.168.1.203:82'
+        #ZABBIX_SERVER = 'http://119.79.232.99:82'
         self.zapi = ZabbixAPI(ZABBIX_SERVER)
         # Login to the Zabbix API
         self.zapi.login('Admin', 'zabbix')
@@ -83,7 +83,10 @@ class gid_process(process_base):
                     i['cpu_model'] = item['lastvalue']
                 elif 'system information' in item['name'].lower():
                     # kernel model
-                    i['kernel_info'] = item['lastvalue'].split()[2]
+                    if item['lastvalue'] != '0':
+                        i['kernel_info'] = item['lastvalue'].split()[2]
+                    else:
+                        i['kernel_info'] = item['lastvalue']
                 elif 'system uptime' in item['name'].lower():
                     # system uptime
                     i['uptime'] = self.clock_2_timedelta(item['lastvalue'])
@@ -213,3 +216,39 @@ class Spider(process_base):
         templates = self.zapi.template.get(output='extend')
 
         return templates
+
+    def addHosts(self, host_ip, group_id, template_id):
+        '''
+        The correct way to create host
+        test = 
+        zapi.host.create(
+        host="192.168.1.204", 
+        interfaces=[
+                {"type":"1", 
+                "main": "1", 
+                "useip": "1",
+                "ip": "192.168.1.204", 
+                "dns": "",
+                "port": "10050"}
+                ], 
+        groups=[
+                {"groupid": "22"}
+               ], 
+        templates=[
+                {"templateid": "10001"}, 
+                {"templateid": "10048"}
+                ]
+                )
+        '''
+        interfaces_temp = [{"type": "1", "main": "1", "dns": "", "port": "10050", "useip": "1"}]
+        interfaces_temp[0]['ip'] = host_ip
+
+        template_temp = [{"templateid": item} for item in template_id]
+        self.zapi.host.create(host=host_ip, 
+                              interfaces=interfaces_temp,
+                              groups=[{"groupid": group_id}], 
+                              templates=template_temp )
+
+        return "You add host %s with template %s and group %s successfully" % (host_ip, template_id, group_id)
+
+        

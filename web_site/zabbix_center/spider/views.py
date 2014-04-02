@@ -5,7 +5,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 #from screens.models import Groups, HostsGroups, model_tests
 from api_process.process import *
 zabbix_url = process_base().zabbix_url
-template = Spider().template_list()
 
 from spider.forms import ContactForm, addHostsForm
 
@@ -16,10 +15,17 @@ def spider_index(request):
         form = addHostsForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
+            # use zapi add host
+            hosts = cd['hosts'].split()
+            group = cd['group']
+            templateids = cd['templateids']
 
-            tests = request
-            hosts_list = cd['hosts']
-            return render(request, 'spider/index.html', {'cd': cd, 'request': request})
+            response=[]
+            for host in hosts:
+                test = Spider().addHosts(host, group, templateids)
+                response.append(test)
+            return render(request, 'spider/form_response.html', {'zabbix_url': zabbix_url 
+                                                                 'response': response})
     else:
         form = addHostsForm()
 

@@ -4,11 +4,7 @@ from __future__ import unicode_literals
 from django import forms
 from api_process.process import *
 
-templates = Spider().template_list()
-groups = process_base().gid_2_group_list()
 
-template_choices = [(item['templateid'], item['name']) for item in templates]
-group_choices = [(item['groupid'], item['name']) for item in groups]
 
 
 class ContactForm(forms.Form):
@@ -19,7 +15,14 @@ class ContactForm(forms.Form):
     
 
 class addHostsForm(forms.Form):
-    hosts = forms.CharField(help_text='Please input the host ip you need to add')
+
+    templates = Spider().template_list()
+    groups = process_base().gid_2_group_list()
+
+    template_choices = [(item['templateid'], item['name']) for item in templates]
+    group_choices = [(item['groupid'], item['name']) for item in groups]
+
+    hosts = forms.CharField(help_text='Please input the host ip you need to add. Multiple ip you should use space to split like "1.2.3.4 1.2.3.4 1.2.3.4"')
     templateids = forms.MultipleChoiceField(
         choices=template_choices, 
         help_text='Check what template as you want to add to hosts',
