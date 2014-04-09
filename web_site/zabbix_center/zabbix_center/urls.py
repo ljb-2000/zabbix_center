@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     # OPS components
     url(r'^screens/', include('screens.urls', namespace="screens")),
     url(r'^spider/', include('spider.urls', namespace="spider")),
+    url(r'^snooze/', include('snooze.urls', namespace="snooze")),
 
     # bootstrap demo
     url(r'^demo/', include('demo.urls', namespace="demo")),

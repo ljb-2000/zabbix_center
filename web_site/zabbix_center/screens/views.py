@@ -27,11 +27,11 @@ def hostgraph_detail(request, host_id):
 	return render(request, 'screens/hostgraphs.html', context)
 
 
-def issue_detail(request):
-	issues = last_issue().current_issues()
-	context = {'issues': issues, 'zabbix_url': zabbix_url}
+#def issue_detail(request):
+#	issues = last_issue().current_issues()
+#	context = {'issues': issues, 'zabbix_url': zabbix_url}
 
-	return render(request, 'screens/last_issues.html', context)
+#	return render(request, 'screens/last_issues.html', context)
 
 
 def tests(request):

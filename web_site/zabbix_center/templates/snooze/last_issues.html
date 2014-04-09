@@ -18,7 +18,7 @@
         <h2 id='{{ issue.triggerid }}'><a href="{% url 'screens:hostgraph_detail' issue.hostid %}"><span class="label label-primary">{{ issue.hostname }}</span></a></h2>
         <h4><span class="label label-info">{{ issue.description }}</span></h4>
         <li>
-        <img src="{{ zabbix_url }}/chart.php?itemid={{ issue.items.0.itemid }}&period=3600&width=700" alt='' /> 
+        <img src="{{ zabbix_url }}/chart.php?itemid={{ issue.items.0.itemid }}&period=3600&width=350" alt='' /> 
         </li>
       {% endfor %}
     </div>

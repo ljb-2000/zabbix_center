@@ -18,18 +18,17 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="{{ zabbix_url }}">Zabbix Server</a></li>
-            <!--<li class="active"><a href="{% url 'screens:group_index' %}">Hosts by groups</a></li>
-            <li><a href="{% url 'screens:issue_detail' %}">Last Issue</a></li>-->
+            <!--<li class="active"><a href="{% url 'screens:group_index' %}">Hosts by groups</a></li>-->
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Monitor Screens<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li class="active"><a href="{% url 'screens:group_index' %}">Hosts by groups</a></li>
                 <li class="divider"></li>
-                <li><a href="{% url 'screens:issue_detail' %}">Last Issue</a></li>
+                <li><a href="{% url 'snooze:issue_detail' %}">Last Issue</a></li>
               </ul>
             </li>
             <li><a href="{% url 'spider:spider_index' %}">Zabbix Spider</a></li>
-            <li><a href="#">Zabbix Snooze</a></li>
+            <li><a href="{% url 'snooze:issue_detail' %}">Zabbix Snooze</a></li>
             <li><a href="#">Mysql Monitor center</a></li>
             <li><a href="{% url 'zabbix_tables:home' %}">Zabbix Mysql Tables</a></li>
           </ul>
