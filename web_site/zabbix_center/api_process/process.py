@@ -174,6 +174,9 @@ class last_issue(process_base):
         trigger = [item for item in triggers if item['value'] == '1']
         return trigger
 
+    def snoozeTimer(self, triggerid, times, ack):
+
+
 class Spider(process_base):
 
     def __init__(self):

@@ -47,3 +47,27 @@ for x in result_list:
 			x['content'].append({'graphid': i['graphid'], 'name': i['name']})
 
 # get template list 
+
+# snooze test
+triggers = zapi.trigger.get(only_true=1,
+                                         skipDependent=1,
+                                         monitored=1,
+                                         active=1,
+                                         output='extend',
+                                         expandDescription=1,
+                                         expandData='host',
+                                         selectItems='',
+                                         selectLastEvent='',
+                                         )
+
+zapi.trigger.update(triggerid='14473', status='1')
+
+def delay():
+	# status = 0  enable
+	zapi.trigger.update(triggerid='14473', status='0')
+
+import threading
+t = threading.Timer(60.0, delay)
+t.start()
+
+
