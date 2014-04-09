@@ -1,11 +1,8 @@
 # import zabbixAPI
 from pyzabbix import ZabbixAPI
 from datetime import datetime
-# The hostname at which the Zabbix web interface is available
 
-# input groupid
-# output host and hostid in {'host': host, 'hostid': hostid}
-
+import threading
 
 class process_base(object):
 
@@ -132,6 +129,28 @@ class hid_process(process_base):
         '''
         return self.zapi.host.get(hostids=self.host_id, output='extend')
 
+class tid_process(process_base):
+
+    def __init__(self):
+        process_base.__init__(self)
+
+
+    def tid2eid(self, trigger_id):
+        '''
+        '''
+        triggers = self.zapi.trigger.get( 
+                                         only_true=1,
+                                         skipDependent=1,
+                                         monitored=1,
+                                         active=1,
+                                         output='extend',
+                                         expandDescription=1,
+                                         expandData='host',
+                                         selectItems='',
+                                         selectLastEvent='',
+                                         )
+        result = [item for item in triggers if item['triggerid'] == str(trigger_id)]
+        return type(trigger_id)
 
 class last_issue(process_base):
 
@@ -174,7 +193,28 @@ class last_issue(process_base):
         trigger = [item for item in triggers if item['value'] == '1']
         return trigger
 
-    def snoozeTimer(self, triggerid, times, ack):
+
+    def snoozeTimer(self, trigger_id, times):
+        '''
+        '''
+        self.trigger_switch(trigger_id, '1')
+
+        result = threading.Timer(times, self.trigger_switch, [trigger_id, '0'])
+        return result
+
+
+    def trigger_switch(self, trigger_id, switch):
+        '''
+        if switch == '1', mean off 
+        else switch == '0', mean on
+        '''
+        self.zapi.trigger.update(triggerid = trigger_id, status=switch)
+
+
+    def ack_process(self, event_id, ack_text):
+        '''
+        '''
+        self.zapi.event.acknowledge(eventids=event_id, message=ack_text)
 
 
 class Spider(process_base):

@@ -8,15 +8,16 @@ from api_process.process import *
 class ackForm(forms.Form):
 
     time_select = (
-    ('1', 60.0 * 5),
-    ('2', 60.0 * 10),
-    ('3', 60.0 * 15),
-    ('4', 60.0 * 60), 
-    ('5', 60.0 * 120),
-    ('6', 60.0 * 180),
-    ('7', 60.0 * 3600 * 1),
-    ('8', 60.0 * 3600 * 7),
-    ('9', 60.0 * 3600 * 30),
+    (20 * 1,   '20 seconds'),
+    (60 * 5,   '5 min'),
+    (60 * 10,  '10 min'),
+    (60 * 15,  '15 min'),
+    (60 * 60,  '1 hour'), 
+    (60 * 120, '2 hours'),
+    (60 * 180, '3 hours'),
+    (60 * 3600 * 1, '1 day'),
+    (60 * 3600 * 7, '7 days'),
+    (60 * 3600 * 30, '30 days'),
     )
 
     ack_text = forms.CharField(help_text='Please input comments')

@@ -17,7 +17,7 @@
       {% for issue in issues %}
         <a href="{% url 'screens:hostgraph_detail' issue.hostid %}"><h2 id='{{ issue.triggerid }}'><span class="label label-primary">{{ issue.hostname }}</span></h2></a>
         <h4><span class="label label-info">{{ issue.description }}</span></h4>
-        <a href="{% url 'snooze:ack_process' issue.triggerid}"><h5><span class="label label-warning">Snooze</span></h5></a>
+        <a href="{% url 'snooze:snooze_process' issue.triggerid %}"><h5><span class="label label-warning">Snooze</span></h5></a>
         <li>
         <img src="{{ zabbix_url }}/chart.php?itemid={{ issue.items.0.itemid }}&period=3600&width=700" alt='' /> 
         </li>

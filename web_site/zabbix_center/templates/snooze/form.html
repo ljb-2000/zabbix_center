@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}ZABBIX Snooze{% endblock %}
+{% block content %}.
+
+<!-- Docs page layout -->
+    <div class="bs-docs-header" id="content">
+      <div class="container">
+        <h1>Zabbix Snooze</h1>
+        <p>Add monitored host with specify template and groups.</p>
+      </div>
+    </div>
+
+    <!-- Callout for the old docs link -->
+<div class="container bs-docs-container">
+<div class="row">
+  <div class="col-md-12" role="main">
+    <!-- Global Bootstrap settings
+================================================== -->
+  	<div class="bs-docs-section">
+  		<form role='form' method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons submit="OK" reset="Cancel" %}{% endbuttons %}
+    </form>
+		</div>
+	</div>
+  </div>
+</div>
+
+
+
+{% endblock %}		

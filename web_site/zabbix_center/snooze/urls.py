@@ -7,7 +7,7 @@ urlpatterns = patterns('',
 	# url(r'^$', views.group_index, name='group_index'),
 	# ex: /polls/5/s
     url(r'^last_issue/$', views.issue_detail, name='issue_detail'),
-    url(r'^ack/(?P<triggerid>\d+)/$', views.ack_process, name='ack_process'),
+    url(r'^ack/(?P<triggerid>\d+)/$', views.snooze_process, name='snooze_process'),
     # ex: /polls/5/results/
     #url(r'^(?P<group_id>\d+)/results/$', views.results, name='results'),
     # ex: /polls/5/vote/

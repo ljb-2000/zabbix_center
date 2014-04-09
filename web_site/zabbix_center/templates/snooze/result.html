@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}ZABBIX Snooze{% endblock %}
+{% block content %}.
+
+<!-- Docs page layout -->
+    <div class="bs-docs-header" id="content">
+      <div class="container">
+        <h1>Zabbix Snooze</h1>
+        <p>Add monitored host with specify template and groups.</p>
+      </div>
+    </div>
+
+    <!-- Callout for the old docs link -->
+<div class="container bs-docs-container">
+<div class="row">
+  <div class="col-md-12" role="main">
+    <!-- Global Bootstrap settings
+================================================== -->
+  	<div class="bs-docs-section">
+  		{% if snooze_time %}
+		<h1><span class="label label-success">Congratulations!!!</span></h1>
+			<h3><span class="label label-info">You have snooze {{ snooze_time }} successfully!!! </span></h3>
+		<div class="alert alert-success">
+					<li>{{ ack_text }}</li>
+					<li>{{ triggerid }}</li>
+					<li>{{ snooze_time }}</li>
+					<li>{{ temp }}</li>
+		</div>
+		{% endif %}
+		<a href="{% url 'snooze:issue_detail' %}"><span class="label label-primary">Go Back to the page snooze last_issues</span></a>
+	</div>
+  </div>
+</div>
+</div>
+
+
+{% endblock %}		
