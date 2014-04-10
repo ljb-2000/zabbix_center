@@ -13,7 +13,7 @@ def issue_detail(request):
 
 	return render(request, 'snooze/last_issues.html', context)
 
-def snooze_process(request, triggerid):
+def snooze_process(request, trigger_id):
 
 	if request.method == 'POST':
 		form = ackForm(request.POST)
@@ -22,18 +22,20 @@ def snooze_process(request, triggerid):
 
 			ack_text = cd['ack_text']
 			snooze_time = cd['time_snoozes']
+			snooze_time_h = process_base().clock_2_timedelta(int(snooze_time))
 
-			result = last_issue().snoozeTimer(triggerid, int(snooze_time))
+			result = last_issue().snoozeTimer(trigger_id, int(snooze_time))
 			result.start()
 
-			temp = tid_process().tid2eid(triggerid)
-			#last_issue().ack_process(event_id, ack_text)
+			event_id = tid_process(trigger_id).tid2eid()
+			
+			#event_id = result['lastEvent']['eventid']
+			last_issue().ack_process(event_id, ack_text)
 
 			return render(request, 'snooze/result.html', {'zabbix_url': zabbix_url,
 															'ack_text': ack_text,
-															'snooze_time': snooze_time,
-															'triggerid': triggerid,
-															'temp': temp})
+															'event_id': event_id,
+															'snooze_time_h': snooze_time_h})
 	else:
 		form = ackForm()
 

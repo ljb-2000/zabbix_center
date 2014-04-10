@@ -131,26 +131,18 @@ class hid_process(process_base):
 
 class tid_process(process_base):
 
-    def __init__(self):
+    def __init__(self, trigger_id):
         process_base.__init__(self)
+        self.trigger_id = trigger_id
 
 
-    def tid2eid(self, trigger_id):
+    def tid2eid(self):
         '''
         '''
-        triggers = self.zapi.trigger.get( 
-                                         only_true=1,
-                                         skipDependent=1,
-                                         monitored=1,
-                                         active=1,
-                                         output='extend',
-                                         expandDescription=1,
-                                         expandData='host',
-                                         selectItems='',
-                                         selectLastEvent='',
-                                         )
-        result = [item for item in triggers if item['triggerid'] == str(trigger_id)]
-        return type(trigger_id)
+        result = self.zapi.trigger.get(triggerids=self.trigger_id, output='extend', selectLastEvent='')
+        return result[0]['lastEvent']['eventid']
+        
+        
 
 class last_issue(process_base):
 

@@ -21,12 +21,11 @@
   	<div class="bs-docs-section">
   		{% if snooze_time %}
 		<h1><span class="label label-success">Congratulations!!!</span></h1>
-			<h3><span class="label label-info">You have snooze {{ snooze_time }} successfully!!! </span></h3>
+			<h3><span class="label label-info">You have snooze successfully!!! </span></h3>
 		<div class="alert alert-success">
-					<li>{{ ack_text }}</li>
-					<li>{{ triggerid }}</li>
-					<li>{{ snooze_time }}</li>
-					<li>{{ temp }}</li>
+					<li>Well done! The log "{{ ack_text }}" has been recorded.</li>
+					<li>The {{ triggerid }} trigger has been snoozed {{ snooze_time_h }}.</li>
+					<li>During the time, you will not received any mail about the eventid {{ event_id }}</li>
 		</div>
 		{% endif %}
 		<a href="{% url 'snooze:issue_detail' %}"><span class="label label-primary">Go Back to the page snooze last_issues</span></a>

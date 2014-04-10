@@ -14,6 +14,7 @@
     <!-- Global Bootstrap settings
 ================================================== -->
     <div class="bs-docs-section">
+      {% if issues %}
       {% for issue in issues %}
         <a href="{% url 'screens:hostgraph_detail' issue.hostid %}"><h2 id='{{ issue.triggerid }}'><span class="label label-primary">{{ issue.hostname }}</span></h2></a>
         <h4><span class="label label-info">{{ issue.description }}</span></h4>
@@ -22,6 +23,11 @@
         <img src="{{ zabbix_url }}/chart.php?itemid={{ issue.items.0.itemid }}&period=3600&width=700" alt='' /> 
         </li>
       {% endfor %}
+      {% else %}
+      <div class="alert alert-danger">There isn't any Event happen!!! </div>
+      <div class="alert alert-success"> Just relax! </div>
+      {% endif %}
+
     </div>
   </div>
   <div class="col-md-3">
